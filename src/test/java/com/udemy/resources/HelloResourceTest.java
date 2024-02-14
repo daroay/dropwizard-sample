@@ -1,7 +1,6 @@
 package com.udemy.resources;
 
-import com.udemy.auth.HelloAuthenticator;
-import com.udemy.auth.HelloAuthorizer;
+import com.udemy.auth.PermissiveAuthorizer;
 import com.udemy.core.User;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
@@ -13,13 +12,11 @@ import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import io.dropwizard.testing.junit5.ResourceExtension;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
-import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import java.security.Principal;
+
 import java.util.Base64;
 import java.util.Optional;
 
@@ -40,7 +37,7 @@ class HelloResourceTest {
             .setTestContainerFactory(new GrizzlyWebTestContainerFactory())
             .addProvider(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<User>()
                     .setAuthenticator(TEST_AUTHENTICATOR)
-                    .setAuthorizer(new HelloAuthorizer())
+                    .setAuthorizer(new PermissiveAuthorizer())
                     .buildAuthFilter()))
             .addProvider(RolesAllowedDynamicFeature.class)
             .addProvider(new AuthValueFactoryProvider.Binder<>(User.class))

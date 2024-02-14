@@ -1,6 +1,6 @@
 package com.udemy.resources;
 
-import com.udemy.auth.HelloAuthorizer;
+import com.udemy.auth.PermissiveAuthorizer;
 import com.udemy.core.Bookmark;
 import com.udemy.core.User;
 import com.udemy.db.BookmarkDAO;
@@ -61,7 +61,7 @@ public class BookmarksResourceTest {
     private static final BasicCredentialAuthFilter<User> FILTER
             = new BasicCredentialAuthFilter.Builder<User>()
             .setAuthenticator(credentials -> Optional.of(USER))
-            .setAuthorizer(new HelloAuthorizer())
+            .setAuthorizer(new PermissiveAuthorizer())
             .setRealm("SECURITY REALM")
             .buildAuthFilter();
 

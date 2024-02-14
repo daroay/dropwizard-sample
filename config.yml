@@ -12,7 +12,7 @@ server:
       port: 8080
 
 database:
-  driverClass: com.mysql.jdbc.Driver
+  driverClass: com.mysql.cj.jdbc.Driver
   user: root
   password: p@ssw0rd
   url: jdbc:mysql://localhost:33306/DropBookmarks

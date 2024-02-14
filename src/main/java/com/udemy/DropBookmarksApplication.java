@@ -1,8 +1,7 @@
 package com.udemy;
 
 import com.udemy.auth.DBAuthenticator;
-import com.udemy.auth.HelloAuthenticator;
-import com.udemy.auth.HelloAuthorizer;
+import com.udemy.auth.PermissiveAuthorizer;
 import com.udemy.core.Bookmark;
 import com.udemy.core.User;
 import com.udemy.db.BookmarkDAO;
@@ -41,6 +40,7 @@ public class DropBookmarksApplication extends Application<DropBookmarksConfigura
         return "DropBookmarks";
     }
 
+
     @Override
     public void initialize(final Bootstrap<DropBookmarksConfiguration> bootstrap) {
         bootstrap.addBundle(hibernateBundle);
@@ -72,7 +72,7 @@ public class DropBookmarksApplication extends Application<DropBookmarksConfigura
         environment.jersey().register(new AuthDynamicFeature(
                 new BasicCredentialAuthFilter.Builder<User>()
                         .setAuthenticator(authenticator)
-                        .setAuthorizer(new HelloAuthorizer())
+                        .setAuthorizer(new PermissiveAuthorizer())
                         .setRealm("SECURITY REALM")
                         .buildAuthFilter()));
         environment.jersey().register(new BookmarksResource(bookmarkDAO));
