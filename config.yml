@@ -1,0 +1,18 @@
+---
+logging:
+  level: INFO
+  loggers:
+    com.udemy: DEBUG
+
+password: "p@ssw0rd"
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: root
+  password: p@ssw0rd
+  url: jdbc:mysql://localhost:33306/DropBookmarks

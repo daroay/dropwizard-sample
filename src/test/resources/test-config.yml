@@ -1,0 +1,7 @@
+---
+password: "p@ssw0rd"
+database:
+  driverClass: org.h2.Driver
+  user: sa
+  password: sa
+  url: jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1
